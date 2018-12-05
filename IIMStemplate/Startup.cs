@@ -30,8 +30,6 @@ namespace IIMStemplate
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("IIMSUserDbContext")));
             services.AddDbContext<InventoryManagementDbContext>(options =>
@@ -40,6 +38,8 @@ namespace IIMStemplate
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddMvc();
 
             //Set up DI for Adding React to the application
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -65,8 +65,8 @@ namespace IIMStemplate
             });
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
             app.UseAuthentication();
+            app.UseMvcWithDefaultRoute();
 
             app.Run(async (context) =>
             {
