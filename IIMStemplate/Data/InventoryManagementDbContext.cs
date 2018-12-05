@@ -14,9 +14,9 @@ namespace IIMStemplate.Data
 
         }
 
-        //public DbSet<Product> Products { get; set; }
-        //public DbSet<Order> Orders { get; set; }
-        //public DbSet<Log> Logs { get; set; }
-        //public DbSet<Donor> Donors { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Log> Logs { get; set; }
+        public DbSet<Donor> Donors { get; set; }
     }
 }
