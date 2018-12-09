@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +9,9 @@ namespace IIMStemplate.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
         public Status Status { get; set; }
         public DateTime DateOfLastAction { get; set; }
@@ -33,8 +36,8 @@ namespace IIMStemplate.Models
     /// </summary>
     public enum Status
     {
-        Active, //0
-        Inactive, //1
-        Pending, //2
+        Pending, //0
+        Active, //1
+        Inactive, //2
     }
 }
