@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,11 +13,17 @@ namespace IIMStemplate.Models.Interfaces
     /// </summary>
     interface IInventoryService
     {
-        //These method signatures define basic CRUD operations
-        //for product
+        // These method signatures define CRUD operations
+        // for product
         Task<HttpStatusCode> CreateProduct(Product product);
         Task<Product> GetProductByID(int id);
         Task<Product> UpdateProduct(int id);
         Task<HttpStatusCode> DeleteProduct(int id);
+        // These method signatures define the operations 
+        // for orders
+        Task<HttpStatusCode> CreateOrder(Order order);
+        Task<Order> GetOrderByID(int id);
+        Task<Order> UpdateOrder(int id);
+
     }
 }
