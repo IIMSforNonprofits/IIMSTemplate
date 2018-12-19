@@ -7,7 +7,8 @@
         return (
             <div className="Pending">I am a Pending user landing page for users who do not have permissions yet.
             </div>
-
+            // Also needs to handle authorization redirect for unauthorized user.
+            // Render a link to documentation for application and "Pending user waiting for approval seek admin"
         );
     }
 }
