@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using IIMStemplate.Data;
 using IIMStemplate.Models;
+using IIMStemplate.Models.Interfaces;
+using IIMStemplate.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,16 +32,25 @@ namespace IIMStemplate
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            // These add our connection strings for our databases
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("IIMSUserDbContext")));
             services.AddDbContext<InventoryManagementDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("IIMSDataDbContext")));
 
+            // This is for adding our Identity Context
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+
+            // Dependency Injection Setup for our Data Access Layers
+            services.AddScoped<IUserManagementService, UserManagementService>();
+            services.AddScoped<IDonorService, DonorService>();
+            services.AddScoped<IInventoryService, InventoryService>();
+            services.AddScoped<IMetricService, MetricService>();
+            services.AddScoped<ILogService, LogService>();
 
             //Set up DI for Adding React to the application
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
