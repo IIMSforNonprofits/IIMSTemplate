@@ -9,4 +9,4 @@
     }
 }
 
-export { Eric };
+//export { Eric };
