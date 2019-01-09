@@ -73,7 +73,7 @@ namespace IIMStemplate
                 //Put serverside rendering components as well as
                 //dependencies for react
                 //config.AddScript("~/Scripts/here.jsx");
-                config.AddScript("~/javascript/eric.jsx");
+                // config.AddScript("~/javascript/eric.jsx");
             });
 
             app.UseStaticFiles();
