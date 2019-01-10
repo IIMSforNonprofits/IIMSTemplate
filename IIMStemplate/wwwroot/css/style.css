@@ -1,0 +1,11 @@
+* {
+    background-color: magenta;
+}
+
+.hide-modal {
+    display: none;
+}
+
+.show-modal {
+    display: block;
+}
