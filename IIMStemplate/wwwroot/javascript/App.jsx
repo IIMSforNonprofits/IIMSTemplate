@@ -1,6 +1,6 @@
 ﻿const ROUTES = {
     LANDING: '/',
-    INVETORY: '/inventory'
+    INVENTORY: '/inventory'
 }
 
 class App extends React.Component {
@@ -105,44 +105,25 @@ const DetailView = (props) => {
     )
 }
 
-// class DetailView extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {}
-//     }
-//     render() {
-//         return (
-//             <div className="DetailView">I am a DetailView Modal.
-//             </div>
-//             /* Example of a modal
-//              * import React from 'react';
-
-//                 const Modal = (props) => {
-//                   const showHideClassName = props.show ? "modal display-block" : 'modal display-none';
-
-//                   return (
-//                     <div className={showHideClassName}>
-//                       <div className="modal-main">
-//                         <button onClick={props.handleClose}>X</button>
-//                         {props.children}
-//                       </div>
-//                     </div>
-//                   )
-//                 }
-
-//                 export default Modal;
-//              */
-//         );
-//     }
-// }
 
 ////////////////// DONORS ///////////////////////
 
 class Donors extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            showDetailModal: false,
+        }
     }
+
+    showModal = (e) => {
+        this.setState({ showDetailModal: true})
+    }
+
+    hideModal = () => {
+        this.setState({ showDetailModal: false})
+    }
+
     // =======================================
     // Methods 
     // componentDidMount() - async call to db for paginated donors list. Proof of life is full list. 
@@ -224,8 +205,19 @@ class Landing extends React.Component {
 class Logs extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            showDetailModal: false
+        }
     }
+
+    showModal = (e) => {
+        this.setState({ showDetailModal: true})
+    }
+
+    hideModal = () => {
+        this.setState({ showDetailModal: false})
+    }
+
     render() {
         return (
             <div className="Logs">I am a Logs landing page.
@@ -313,7 +305,17 @@ class Pending extends React.Component {
 class Users extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            showDetailModal: true
+        }
+    }
+
+    showModal = (e) => {
+        this.setState({ showDetailModal: true})
+    }
+
+    hideModal = () => {
+        this.setState({ showDetailModal: false})
     }
     // =======================================
     // Methods 
