@@ -182,6 +182,7 @@ class Inventory extends React.Component {
         return (
             <div className="Inventory">
                 <h2>I am an Inventory dashboard landing page.</h2>
+                <button onClick={ this.showModal }>click me to see stuff</button>
                 <DetailView show={ this.state.showDetailModal } handleClose={this.hideModal}>
                     <p>Text from inventory modal</p>
                 </DetailView>
