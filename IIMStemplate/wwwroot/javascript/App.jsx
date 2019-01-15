@@ -14,6 +14,7 @@ class App extends React.Component {
                 I am an App container fill me with components.
                 <Inventory />
                 {/* <Route path={ROUTES.LANDING} component={Landing} /> */}
+              <Navbar /> {/* Ternary operation to show or hide based on login for Landing */}
             </div>
             // browser router component DONE: - react-router-dom (package) (directing to new page layouts ie exact routes and catch all route.)
             /* example router.js file to import routes from: 
@@ -254,7 +255,16 @@ class Navbar extends React.Component {
     render() {
         // Logic that determines which object for policy level to render in the navbar component
         return (
-            <div className="Navbar">I am Navbar.
+            <div className="Navbar"> {/* Flex box and display as columns for the flexbox css*/}
+                <ul id="nav">
+                    <li>Dashboard</li> {/* referential links or Link tags for displaying proper components based on navigation*/}
+                    <li>Metrics</li>
+                    <li>Inventory</li>
+                    <li>Orders</li>
+                    <li>Logs</li>
+                    <li>Donors</li>
+                    <li>Users</li>
+                </ul>
             </div>
             // <div className=Navbar> <ul> <li>{Dashboard}</li> </ul> </div>
         );
