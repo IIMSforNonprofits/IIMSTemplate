@@ -1,14 +1,22 @@
-﻿class App extends React.Component {
+﻿const ROUTES = {
+    LANDING: '/',
+    INVENTORY: '/inventory'
+}
+
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
     }
     render() {
         return (
-            <div className="App">I am an App container fill me with components.
-                <Navbar /> {/* Ternary operation to show or hide based on login for Landing */}
+            <div className="App">
+                I am an App container fill me with components.
+                <Inventory />
+                {/* <Route path={ROUTES.LANDING} component={Landing} /> */}
+              <Navbar /> {/* Ternary operation to show or hide based on login for Landing */}
             </div>
-            // browser router component TODO: - react-router-dom (package) (directing to new page layouts ie exact routes and catch all route.)
+            // browser router component DONE: - react-router-dom (package) (directing to new page layouts ie exact routes and catch all route.)
             /* example router.js file to import routes from: 
                 const ROUTES = {
                   LANDING: '/',
@@ -85,44 +93,38 @@ class DetailMetrics extends React.Component {
 
 ////////////////// DETAILVIEW ///////////////////////
 
-class DetailView extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-    render() {
-        return (
-            <div className="DetailView">I am a DetailView Modal.
+const DetailView = (props) => {
+    const showHideClassName = props.show ? "show-modal" : 'hide-modal';
+
+    return (
+        <div className = {showHideClassName}>
+            <div className = "modal-main">
+                <button onClick={props.handleClose}>X</button>
+                {props.children}
             </div>
-            /* Example of a modal
-             * import React from 'react';
-
-                const Modal = (props) => {
-                  const showHideClassName = props.show ? "modal display-block" : 'modal display-none';
-
-                  return (
-                    <div className={showHideClassName}>
-                      <div className="modal-main">
-                        <button onClick={props.handleClose}>X</button>
-                        {props.children}
-                      </div>
-                    </div>
-                  )
-                }
-
-                export default Modal;
-             */
-        );
-    }
+        </div>
+    )
 }
+
 
 ////////////////// DONORS ///////////////////////
 
 class Donors extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            showDetailModal: false,
+        }
     }
+
+    showModal = (e) => {
+        this.setState({ showDetailModal: true})
+    }
+
+    hideModal = () => {
+        this.setState({ showDetailModal: false})
+    }
+
     // =======================================
     // Methods 
     // componentDidMount() - async call to db for paginated donors list. Proof of life is full list. 
@@ -142,7 +144,17 @@ class Donors extends React.Component {
 class Inventory extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            showDetailModal: false,
+        };
+    }
+
+    showModal = (e) => {
+        this.setState({ showDetailModal: true})
+    }
+
+    hideModal = () => {
+        this.setState({ showDetailModal: false})
     }
     // =======================================
     // Methods 
@@ -150,7 +162,12 @@ class Inventory extends React.Component {
     // =======================================
     render() {
         return (
-            <div className="Inventory">I am an Inventory dashboard landing page.
+            <div className="Inventory">
+                <h2>I am an Inventory dashboard landing page.</h2>
+                <button onClick={ this.showModal }>click me to see stuff</button>
+                <DetailView show={ this.state.showDetailModal } handleClose={this.hideModal}>
+                    <p>Text from inventory modal</p>
+                </DetailView>
             </div>
             // Render as a table with clickable table row 
             // ForEach to render the object into the table. 
@@ -189,8 +206,19 @@ class Landing extends React.Component {
 class Logs extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            showDetailModal: false
+        }
     }
+
+    showModal = (e) => {
+        this.setState({ showDetailModal: true})
+    }
+
+    hideModal = () => {
+        this.setState({ showDetailModal: false})
+    }
+
     render() {
         return (
             <div className="Logs">I am a Logs landing page.
@@ -287,7 +315,17 @@ class Pending extends React.Component {
 class Users extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            showDetailModal: true
+        }
+    }
+
+    showModal = (e) => {
+        this.setState({ showDetailModal: true})
+    }
+
+    hideModal = () => {
+        this.setState({ showDetailModal: false})
     }
     // =======================================
     // Methods 
