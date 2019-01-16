@@ -33,3 +33,12 @@
 .modal-main > button {
     align-self: flex-end;
 }
+
+.navBar {
+    display: flex;
+    flex-direction: row;
+}
+
+.navBar p {
+    padding: 15px;
+}
