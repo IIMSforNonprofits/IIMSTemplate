@@ -12,9 +12,9 @@ class App extends React.Component {
         return (
             <div className="App">
                 I am an App container fill me with components.
+                <Navbar /> {/* Ternary operation to show or hide based on login for Landing */}
                 <Inventory />
                 {/* <Route path={ROUTES.LANDING} component={Landing} /> */}
-              <Navbar /> {/* Ternary operation to show or hide based on login for Landing */}
             </div>
             // browser router component DONE: - react-router-dom (package) (directing to new page layouts ie exact routes and catch all route.)
             /* example router.js file to import routes from: 
@@ -156,6 +156,29 @@ class Inventory extends React.Component {
     hideModal = () => {
         this.setState({ showDetailModal: false})
     }
+
+    // FORM SUBMISSION METHOD
+    handleSubmit = (event) => {
+        event.preventDefault();
+        let newInvItem = { donor: event.target.donor_id.value, sku: event.target.sku.value, name: event.target.name.value }
+        //let donor = event.target.donor_id.value;
+        //let skuval = event.target.sku.value;
+        //let nameval = event.target.name.value;
+        console.log(newInvItem, "event items submitted");
+        fetch("http://localhost:61258/api/inventory", {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            referrer: "no-referrer",
+            body: JSON.stringify(newInvItem),
+        }).then(response => response.json());
+    }
+
     // =======================================
     // Methods 
     // componentDidMount() - async call to db for paginated inventory list. Proof of life is full list. 
@@ -167,6 +190,12 @@ class Inventory extends React.Component {
                 <button onClick={ this.showModal }>click me to see stuff</button>
                 <DetailView show={ this.state.showDetailModal } handleClose={this.hideModal}>
                     <p>Text from inventory modal</p>
+                    <form className="newItemForm" onSubmit={this.handleSubmit}>
+                        <input type="text" name="donor_id" required/>
+                        <input type="text" name="sku" required/>
+                        <input type="text" name="name" required/>
+                        <input type="submit" value="Submit new Item"/>
+                    </form>
                 </DetailView>
             </div>
             // Render as a table with clickable table row 
@@ -255,16 +284,14 @@ class Navbar extends React.Component {
     render() {
         // Logic that determines which object for policy level to render in the navbar component
         return (
-            <div className="Navbar"> {/* Flex box and display as columns for the flexbox css*/}
-                <ul id="nav">
-                    <li>Dashboard</li> {/* referential links or Link tags for displaying proper components based on navigation*/}
-                    <li>Metrics</li>
-                    <li>Inventory</li>
-                    <li>Orders</li>
-                    <li>Logs</li>
-                    <li>Donors</li>
-                    <li>Users</li>
-                </ul>
+            <div className="navBar"> {/* Flex box and display as columns for the flexbox css*/}  
+                <p>Dashboard</p> {/* referential links or Link tags for displaying proper components based on navigation*/}
+                <p>Metrics</p>
+                <p>Inventory</p>
+                <p>Orders</p>
+                <p>Logs</p>
+                <p>Donors</p>
+                <p>Users</p>
             </div>
             // <div className=Navbar> <ul> <li>{Dashboard}</li> </ul> </div>
         );
