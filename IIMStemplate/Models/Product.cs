@@ -9,7 +9,9 @@ namespace IIMStemplate.Models
     public class Product
     {
         public int ID { get; set; }
-        public int OrderID { get; set; }
+        //TODO: Need to make an OrderItem model to tie together
+        //products to orders as a junction table
+        //public int OrderID { get; set; }
         [Required]
         public int DonorID { get; set; }
         [Required]
