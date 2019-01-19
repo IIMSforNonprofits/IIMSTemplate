@@ -160,12 +160,12 @@ class Inventory extends React.Component {
     // FORM SUBMISSION METHOD
     handleSubmit = (event) => {
         event.preventDefault();
-        let newInvItem = { donor: event.target.donor_id.value, sku: event.target.sku.value, name: event.target.name.value }
+        let newInvItem = { donorID: event.target.donor_id.value, sku: event.target.sku.value, name: event.target.name.value }
         //let donor = event.target.donor_id.value;
         //let skuval = event.target.sku.value;
         //let nameval = event.target.name.value;
         console.log(newInvItem, "event items submitted");
-        fetch("http://localhost:61258/api/inventory", {
+        fetch("http://localhost:12345/api/inventory", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
@@ -191,7 +191,7 @@ class Inventory extends React.Component {
                 <DetailView show={ this.state.showDetailModal } handleClose={this.hideModal}>
                     <p>Text from inventory modal</p>
                     <form className="newItemForm" onSubmit={this.handleSubmit}>
-                        <input type="text" name="donor_id" required/>
+                        <input type="number" name="donor_id" required/>
                         <input type="text" name="sku" required/>
                         <input type="text" name="name" required/>
                         <input type="submit" value="Submit new Item"/>

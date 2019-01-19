@@ -6,6 +6,8 @@ using System.Net;
 using IIMStemplate.Models;
 using IIMStemplate.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 //TODO : error handling for null values
@@ -15,7 +17,8 @@ namespace IIMStemplate.Controllers
     [ApiController]
     public class InventoryController : ControllerBase
     {
-        IInventoryService _inventory;
+        private readonly IInventoryService _inventory;
+        private JsonSerializer _serializer = new JsonSerializer();
 
         public InventoryController(IInventoryService inventory)
         {
@@ -36,16 +39,21 @@ namespace IIMStemplate.Controllers
             return "value";
         }
 
-        // POST api/<controller>
+        // POST api/<controller>   
+        /// <summary>
+        /// This endpoint is used to create a new product from the incoming
+        /// JSON object
+        /// </summary>
+        /// <param name="value">JSON object</param>
+        /// <returns>StatusCode to signify success/fail</returns>
         [HttpPost]
-        public async Task<HttpStatusCode> Post([FromBody]string value)
+        public async Task<HttpStatusCode> Post([FromBody]JObject value)
         {
-            return await _inventory.CreateProduct(new Product()
-            {
-                DonorID = 1234,
-                Name = "Cool Stuff",
-                Sku = "abcd"
-            });
+            // _serializer is instantiated as a privtae field. It is casted to a type of
+            // product and deserializes the JSON tokens into the appropriate Product fields
+            Product newProduct = (Product)_serializer.Deserialize(new JTokenReader(value), typeof(Product));
+            // Method to interact with the Data Access Layer with the Inventory Database
+            return await _inventory.CreateProduct(newProduct);
         }
                   
         // PUT api/<controller>/5
