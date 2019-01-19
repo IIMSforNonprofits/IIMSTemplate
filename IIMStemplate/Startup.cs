@@ -52,6 +52,8 @@ namespace IIMStemplate
             services.AddScoped<IMetricService, MetricService>();
             services.AddScoped<ILogService, LogService>();
 
+            services.AddCors();
+
             //Set up DI for Adding React to the application
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddReact();
