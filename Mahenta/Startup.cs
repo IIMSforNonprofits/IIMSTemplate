@@ -73,7 +73,6 @@ namespace Mahenta
 
             //app.UseAuthentication();
             app.UseStaticFiles();
-            //app.UseCors();
 
             // Initialise ReactJS.NET. Must be before static files.
             app.UseReact(config =>
