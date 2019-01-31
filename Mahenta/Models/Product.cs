@@ -25,6 +25,24 @@ namespace Mahenta.Models
         public string Use { get; set; }
         public Availability Availability { get; set; }
         public string EstimatedValue { get; set; }
+
+        /// <summary>
+        /// This method changes all properties in the current product to be the same as the one provided.
+        /// </summary>
+        /// <param name="product">The up to date product</param>
+        public void UpdateProduct(Product product)
+        {
+            DonorID = product.DonorID;
+            Sku = product.Sku;
+            Name = product.Name;
+            Description = product.Description;
+            Condition = product.Condition;
+            Size = product.Size;
+            Color = product.Color;
+            Use = product.Use;
+            Availability = product.Availability;
+            EstimatedValue = product.EstimatedValue;
+        }
     }
 
     public enum Availability
