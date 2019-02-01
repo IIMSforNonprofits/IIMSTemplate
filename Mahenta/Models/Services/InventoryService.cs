@@ -147,13 +147,13 @@ namespace Mahenta.Models
         /// <returns>A Status Code of 400 for a bad request or a 200 for a successful update</returns>
         public async Task<HttpStatusCode> UpdateProduct(int id, Product product)
         {
-            var updateProduct = await _context.Products.FirstOrDefaultAsync(p => p.ID == id);
+            var updateProduct = _context.Products.FirstOrDefault(p => p.ID == id);
             if (updateProduct == null)
             {
                 return HttpStatusCode.BadRequest;
             }
-            updateProduct = product;
-            updateProduct.ID = id;
+            // This method changes all properties of updateProduct to be the same as product
+            updateProduct.UpdateProduct(product);
             _context.Products.Update(updateProduct);
             await _context.SaveChangesAsync();
             return HttpStatusCode.OK;

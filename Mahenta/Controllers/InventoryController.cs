@@ -26,17 +26,36 @@ namespace Mahenta.Controllers
         }
 
         // GET: api/<controller>
+        /// <summary>
+        /// This endpoint is used to retrieve all products
+        /// </summary>
+        /// <returns>A string which holds all products in the database</returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            // Method to interact with the Data Access Layer with the Inventory Database
+            List<Product> inventory = await _inventory.GetProducts();
+
+            // This serializes the inventory and stores it into a string.
+            string value = JsonConvert.SerializeObject(inventory);
+            return value;
         }
 
         // GET api/<controller>/5
+        /// <summary>
+        /// This endpoint is used to retrieve one product based off of the ID
+        /// </summary>
+        /// <param name="id">The id of the product to find</param>
+        /// <returns>A string containing the information of the product</returns>
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<string> Get(int id)
         {
-            return "value";
+            // Method to interact with the Data Access Layer with the Inventory Database
+            Product product = await _inventory.GetProductByID(id);
+
+            // This serializes the product and stores it into the JSON object declared above.
+            string value = JsonConvert.SerializeObject(product);
+            return value;
         }
 
         // POST api/<controller>   
@@ -45,7 +64,7 @@ namespace Mahenta.Controllers
         /// JSON object
         /// </summary>
         /// <param name="value">JSON object</param>
-        /// <returns>StatusCode to signify success/fail</returns>
+        /// <returns>Status Code to signify success/fail</returns>
         [HttpPost]
         public async Task<HttpStatusCode> Post([FromBody]JObject value)
         {
@@ -57,15 +76,33 @@ namespace Mahenta.Controllers
         }
 
         // PUT api/<controller>/5
+        /// <summary>
+        /// This endpoint is used to update an existing product with new values
+        /// </summary>
+        /// <param name="id">The id of the product to update</param>
+        /// <param name="value">JSON object</param>
+        /// <returns>Status Code to signify success/fail</returns>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<HttpStatusCode> Put(int id, [FromBody]JObject value)
         {
+            // Deserializes the JSON tokens into the appropriate Product fields
+            // and stores it into the updateProduct variable.
+            Product updateProduct = (Product)_serializer.Deserialize(new JTokenReader(value), typeof(Product));
+            // Method to interact with the Data Access Layer with the Inventory Database
+            return await _inventory.UpdateProduct(id, updateProduct);
         }
 
         // DELETE api/<controller>/5
+        /// <summary>
+        /// This endpoint is used to delete an existing product
+        /// </summary>
+        /// <param name="id">The id of the product to delete</param>
+        /// <returns>Status Code to signify success/fail</returns>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<HttpStatusCode> Delete(int id)
         {
+            // Method to interact with the Data Access Layer with the Inventory Database
+            return await _inventory.DeleteProduct(id);
         }
     }
 }
