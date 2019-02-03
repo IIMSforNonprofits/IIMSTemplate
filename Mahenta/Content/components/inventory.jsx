@@ -41,6 +41,30 @@ export class Inventory extends React.Component {
         }).then(response => response.json());
     }
 
+    fetchData = (event) => {
+        event.preventDefault();
+        // let newInvItem = { donorID: event.target.donor_id.value, sku: event.target.sku.value, name: event.target.name.value }
+        //let donor = event.target.donor_id.value;
+        //let skuval = event.target.sku.value;
+        //let nameval = event.target.name.value;
+        fetch("http://localhost:9456/api/inventory", {
+            method: "GET",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            referrer: "no-referrer",
+            // body: JSON.stringify(newInvItem)
+        })
+        .then(response => response.json())
+        .then(function(data) {
+            console.log(data)
+        })
+    }
+
     // =======================================
     // Methods 
     // componentDidMount() - async call to db for paginated inventory list. Proof of life is full list. 
@@ -50,6 +74,7 @@ export class Inventory extends React.Component {
             <div className="Inventory">
                 <h2>I am an Inventory dashboard landing page.</h2>
                 <button onClick={this.showModal}>click me to see stuff</button>
+                <button onClick={this.fetchData}>fetch some</button>
                 <DetailView show={this.state.showDetailModal} handleClose={this.hideModal}>
                     <p>Text from inventory modal</p>
                     <form className="newItemForm" onSubmit={this.handleSubmit}>

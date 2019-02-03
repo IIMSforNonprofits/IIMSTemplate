@@ -44380,6 +44380,30 @@ var Inventory = exports.Inventory = function (_React$Component) {
             });
         };
 
+        _this.fetchData = function (event) {
+            event.preventDefault();
+            // let newInvItem = { donorID: event.target.donor_id.value, sku: event.target.sku.value, name: event.target.name.value }
+            //let donor = event.target.donor_id.value;
+            //let skuval = event.target.sku.value;
+            //let nameval = event.target.name.value;
+            fetch("http://localhost:9456/api/inventory", {
+                method: "GET",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                redirect: "follow",
+                referrer: "no-referrer"
+                // body: JSON.stringify(newInvItem)
+            }).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                console.log(data);
+            });
+        };
+
         _this.state = {
             showDetailModal: false
         };
@@ -44410,6 +44434,11 @@ var Inventory = exports.Inventory = function (_React$Component) {
                     'button',
                     { onClick: this.showModal },
                     'click me to see stuff'
+                ),
+                _react2.default.createElement(
+                    'button',
+                    { onClick: this.fetchData },
+                    'fetch some'
                 ),
                 _react2.default.createElement(
                     _detailView.DetailView,
