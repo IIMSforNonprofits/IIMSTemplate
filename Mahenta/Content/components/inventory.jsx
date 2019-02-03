@@ -13,12 +13,10 @@ export class Inventory extends React.Component {
     }
 
     showModal = (e) => {
-        console.log('fired show')
         this.setState({ showDetailModal: true })
     }
 
     hideModal = () => {
-        console.log('fired hide')
         this.setState({ showDetailModal: false })
     }
 

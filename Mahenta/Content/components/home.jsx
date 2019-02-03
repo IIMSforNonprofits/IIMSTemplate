@@ -1,65 +1,20 @@
 import { Component, Fragment } from 'react';
 import {
-	Link,
 	BrowserRouter,
 	Route,
 	Switch,
 	StaticRouter,
 	Redirect,
 } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 
-import { StyledComponentsDemo } from './styled-components.jsx';
+import { Dashboard } from './dashboard.jsx';
+import { Donors } from './donors.jsx';
 import { Inventory } from './inventory.jsx';
-// import { DetailView } from './detail-view.jsx';
-import { EmotionDemo } from './emotion.jsx';
-import { ReactJssDemo } from './react-jss.jsx';
-
-class Navbar extends Component {
-	render() {
-		return (
-			<ul>
-				<li>
-					<Link to="/">Home</Link>
-				</li>
-				<li>
-					<Link to="/styled-components">Styled Components Demo</Link>
-				</li>
-				<li>
-					<Link to="/react-jss">React-JSS Demo</Link>
-				</li>
-				<li>
-					<Link to="/emotion">Emotion Demo</Link>
-                </li>
-                <li>
-                    <Link to="/inventory">Inventory</Link>
-                </li>
-			</ul>
-		);
-	}
-}
-
-class HomePage extends Component {
-	render() {
-		return (
-			<Fragment>
-				<Helmet>
-					<title>ReactJS.NET Demos</title>
-				</Helmet>
-				<h1
-					style={{
-						lineHeight: '2',
-						color: '#222',
-						fontFamily: 'Helvetica, sans-serif',
-						textShadow: '0 0 5px lightgray',
-					}}
-				>
-					ReactJS.NET is 🔥🔥
-				</h1>
-			</Fragment>
-		);
-	}
-}
+import { Logs } from './logs.jsx';
+import { Metrics } from './metrics.jsx';
+import { Navbar } from './nav.jsx';
+import { Orders } from './orders.jsx';
+import { Users } from './users.jsx';
 
 export default class HomeComponent extends Component {
 	render() {
@@ -70,16 +25,18 @@ export default class HomeComponent extends Component {
 					<Route
 						exact
 						path="/"
-						render={() => <Redirect to="/home" />}
+						render={() => <Redirect to="/dashboard" />}
 					/>
-					<Route path="/home" component={HomePage} />
+					<Route path="/dashboard" component={Dashboard} />
 					<Route
-						path="/styled-components"
-						component={StyledComponentsDemo}
+						path="/metrics"
+						component={Metrics}
 					/>
-					<Route path="/react-jss" component={ReactJssDemo} />
-                    <Route path="/emotion" component={EmotionDemo} />
                     <Route path="/inventory" component={Inventory} />
+					<Route path="/orders" component={Orders} />
+					<Route path="/logs" component={Logs} />
+					<Route path="/donors" component={Donors} />
+					<Route path="/users" component={Users} />
 					<Route
 						path="*"
 						component={({ staticContext }) => {
