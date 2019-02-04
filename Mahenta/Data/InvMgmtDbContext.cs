@@ -13,7 +13,10 @@ namespace Mahenta.Data
         {
 
         }
-
+        /// <summary>
+        /// This method is used to seed the databases.
+        /// </summary>
+        /// <param name="modelBuilder">Model Builder from within Entity Framework</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region SeedData_Products
