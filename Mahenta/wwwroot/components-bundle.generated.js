@@ -44280,10 +44280,13 @@ var Inventory = exports.Inventory = function (_React$Component) {
 
         _this.handleSubmit = function (event) {
             event.preventDefault();
-            var newInvItem = { donorID: event.target.donor_id.value, sku: event.target.sku.value, name: event.target.name.value
-                //let donor = event.target.donor_id.value;
-                //let skuval = event.target.sku.value;
-                //let nameval = event.target.name.value;
+            var newInvItem = {
+                donorID: event.target.donor_id.value,
+                sku: event.target.sku.value,
+                name: event.target.name.value
+                // event.target.donor_id.value = '';
+                // event.target.sku.value = '';
+                // event.target.name.value = '';
             };fetch("http://localhost:9456/api/inventory", {
                 method: "POST",
                 mode: "cors",
@@ -44299,6 +44302,11 @@ var Inventory = exports.Inventory = function (_React$Component) {
                 return response.json();
             }).then(function () {
                 return _this.fetchData();
+            }).then(function () {
+                event.target.donor_id.value = '';
+                event.target.sku.value = '';
+                event.target.name.value = '';
+                _this.hideModal();
             });
         };
 
@@ -44354,28 +44362,70 @@ var Inventory = exports.Inventory = function (_React$Component) {
             // this.fetchData();
             return _react2.default.createElement(
                 'div',
-                { className: 'Inventory' },
+                { className: 'inventory' },
                 _react2.default.createElement(
                     'h2',
                     null,
-                    'I am an Inventory dashboard landing page.'
+                    'Inventory'
                 ),
-                console.log(this.state.displayData),
-                this.state.displayData.map(function (item, i) {
-                    return _react2.default.createElement(
-                        'div',
-                        { key: i, className: 'invList' },
-                        _react2.default.createElement(
-                            'h3',
-                            null,
-                            item.Sku
-                        )
-                    );
-                }),
                 _react2.default.createElement(
-                    'button',
-                    { onClick: this.showModal },
-                    'click me to see stuff'
+                    'ul',
+                    { className: 'invNav' },
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'ID'
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Name'
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'Short Description'
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        'SKU'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'invList' },
+                    this.state.displayData.map(function (item, i) {
+                        return _react2.default.createElement(
+                            'ul',
+                            { key: i, className: 'invListItem' },
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                item.ID
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                item.Name
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                item.Description
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                item.Sku
+                            )
+                        );
+                    }),
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.showModal },
+                        'Add Product'
+                    )
                 ),
                 _react2.default.createElement(
                     _detailView.DetailView,
@@ -44416,7 +44466,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var DetailView = exports.DetailView = function DetailView(props) {
 
-    var showHideClassName = props.show ? "show-modal" : 'hide-modal';
+    var showHideClassName = props.show ? "modal show-modal" : 'modal hide-modal';
 
     return React.createElement(
         "div",

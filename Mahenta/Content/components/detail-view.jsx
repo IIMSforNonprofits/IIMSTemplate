@@ -2,7 +2,7 @@
 
 export const DetailView = (props) => {
 
-    const showHideClassName = props.show ? "show-modal" : 'hide-modal';
+    const showHideClassName = props.show ? "modal show-modal" : 'modal hide-modal';
 
     return (
         <div className={showHideClassName}>

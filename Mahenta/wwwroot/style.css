@@ -1,7 +1,76 @@
 .show-modal {
-    display: block
+    display: block;
+    width: 100%;
 }
 
 .hide-modal {
-    display: none
+    display: none;
+    width: none;
+}
+
+.modal {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: rgba(248, 246, 246, 0.8);
+    
+  }
+
+  .modal-main > button {
+    align-self: flex-end;
+  }
+  .modal-main > a{
+    align-self: bottom;
+  }
+  .modal-main > p {
+    align-self: center;
+    width: 90%;
+    height: 50%;
+    white-space: pre-line;
+    display: inline-block;
+    word-break: break-word;
+    padding-bottom: 6.0rem;
+    font-size: 110%;
+    height: 40%
+  }
+  
+  .modal-main {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position:fixed;
+    background: #f3ecc4;
+    width: 70%;
+    height: 60%;
+    word-wrap    : break-word;
+    overflow-wrap: break-word;
+    
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }
+
+  /* .inventory {
+      display: flex;
+  } */
+
+  .invNav {
+      display: flex;
+  }
+
+  .invNav > li {
+      list-style: none;
+      margin-right: 20%;
+  }
+
+.invListItem {
+    display: flex;
+}
+
+.invListItem > li {
+    list-style: none;
+    margin-right: 20%;
 }

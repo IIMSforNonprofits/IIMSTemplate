@@ -24,10 +24,14 @@ export class Inventory extends React.Component {
     // FORM SUBMISSION METHOD
     handleSubmit = (event) => {
         event.preventDefault();
-        let newInvItem = { donorID: event.target.donor_id.value, sku: event.target.sku.value, name: event.target.name.value }
-        //let donor = event.target.donor_id.value;
-        //let skuval = event.target.sku.value;
-        //let nameval = event.target.name.value;
+        let newInvItem = { 
+            donorID: event.target.donor_id.value, 
+            sku: event.target.sku.value, 
+            name: event.target.name.value 
+        }
+        event.target.donor_id.value = '';
+        event.target.sku.value = '';
+        event.target.name.value = '';
         fetch("http://localhost:9456/api/inventory", {
             method: "POST",
             mode: "cors",
@@ -40,7 +44,8 @@ export class Inventory extends React.Component {
             referrer: "no-referrer",
             body: JSON.stringify(newInvItem)
         }).then(response => response.json())
-        .then(() => this.fetchData());
+        .then(() => this.fetchData())
+        .then(() => this.hideModal());
     }
 
     fetchData = () => {
@@ -76,17 +81,27 @@ export class Inventory extends React.Component {
     render() {
         // this.fetchData();
         return (
-            <div className="Inventory">
-                <h2>I am an Inventory dashboard landing page.</h2>
-                { console.log(this.state.displayData) }
-                { this.state.displayData.map((item, i) => {
-                    return (
-                        <div key={i} className="invList">
-                            <h3>{ item.Sku }</h3>
-                        </div>
-                    )
-                }) }
-                <button onClick={this.showModal}>click me to see stuff</button>
+            <div className="inventory">
+                <h2>Inventory</h2>
+                <ul className="invNav">
+                    <li>ID</li>
+                    <li>Name</li>
+                    <li>Short Description</li>
+                    <li>SKU</li>
+                </ul>
+                <div className="invList">
+                    { this.state.displayData.map((item, i) => {
+                        return (
+                            <ul key={i} className="invListItem">
+                                <li>{ item.ID }</li>
+                                <li>{ item.Name }</li>
+                                <li>{ item.Description }</li>
+                                <li>{ item.Sku }</li>
+                            </ul>
+                        )
+                    }) }
+                    <button onClick={this.showModal}>Add Product</button>
+                </div>
 
                 <DetailView show={this.state.showDetailModal} handleClose={this.hideModal}>
                     <p>Text from inventory modal</p>
