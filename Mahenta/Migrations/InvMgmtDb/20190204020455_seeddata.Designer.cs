@@ -4,14 +4,16 @@ using Mahenta.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mahenta.Migrations.InvMgmtDb
 {
     [DbContext(typeof(InvMgmtDbContext))]
-    partial class InvMgmtDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190204020455_seeddata")]
+    partial class seeddata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,71 +49,6 @@ namespace Mahenta.Migrations.InvMgmtDb
                     b.HasKey("ID");
 
                     b.ToTable("Donors");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            DonorEntity = 0,
-                            DonorName = "Jon Doe",
-                            Email = "email1@gmail.com",
-                            PhoneNumber = "1234567890",
-                            TotalDonations = 0
-                        },
-                        new
-                        {
-                            ID = 2,
-                            DonorEntity = 0,
-                            DonorName = "Jon Doe",
-                            Email = "email1@gmail.com",
-                            PhoneNumber = "1234567890",
-                            TotalDonations = 0
-                        },
-                        new
-                        {
-                            ID = 3,
-                            DonorEntity = 0,
-                            DonorName = "Jon Doe",
-                            Email = "email1@gmail.com",
-                            PhoneNumber = "1234567890",
-                            TotalDonations = 0
-                        },
-                        new
-                        {
-                            ID = 4,
-                            DonorEntity = 0,
-                            DonorName = "Jon Doe",
-                            Email = "email1@gmail.com",
-                            PhoneNumber = "1234567890",
-                            TotalDonations = 0
-                        },
-                        new
-                        {
-                            ID = 5,
-                            DonorEntity = 0,
-                            DonorName = "Jon Doe",
-                            Email = "email1@gmail.com",
-                            PhoneNumber = "1234567890",
-                            TotalDonations = 0
-                        },
-                        new
-                        {
-                            ID = 6,
-                            DonorEntity = 0,
-                            DonorName = "Jon Doe",
-                            Email = "email1@gmail.com",
-                            PhoneNumber = "1234567890",
-                            TotalDonations = 0
-                        },
-                        new
-                        {
-                            ID = 7,
-                            DonorEntity = 0,
-                            DonorName = "Jon Doe",
-                            Email = "email1@gmail.com",
-                            PhoneNumber = "1234567890",
-                            TotalDonations = 0
-                        });
                 });
 
             modelBuilder.Entity("Mahenta.Models.Log", b =>
