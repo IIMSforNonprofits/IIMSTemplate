@@ -36,9 +36,9 @@ namespace Mahenta.Controllers
             // Method to interact with the Data Access Layer with the Inventory Database
             List<Product> inventory = await _inventory.GetProducts();
 
-            // This serializes the inventory and stores it into a string.
-            string value = JsonConvert.SerializeObject(inventory);
-            return value;
+            // This serializes the inventory and stores it into a string
+            string stringifiedProducts = JsonConvert.SerializeObject(inventory);
+            return stringifiedProducts;
         }
 
         // GET api/<controller>/5
@@ -54,8 +54,8 @@ namespace Mahenta.Controllers
             Product product = await _inventory.GetProductByID(id);
 
             // This serializes the product and stores it into the JSON object declared above.
-            string value = JsonConvert.SerializeObject(product);
-            return value;
+            string stringifiedProduct = JsonConvert.SerializeObject(product);
+            return stringifiedProduct;
         }
 
         // POST api/<controller>   

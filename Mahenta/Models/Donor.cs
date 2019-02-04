@@ -21,6 +21,22 @@ namespace Mahenta.Models
         public string JobTitle { get; set; }
         public DonorEntity DonorEntity { get; set; }
         public int TotalDonations { get; set; }
+
+        /// <summary>
+        /// This method changes all properties in the current donor to be the same as the one provided.
+        /// </summary>
+        /// <param name="donor">The up to date donor</param>
+        public void UpdateDonor(Donor donor)
+        {
+            Email = donor.Email;
+            DonorName = donor.DonorName;
+            PhoneNumber = donor.PhoneNumber;
+            CompanyName = donor.CompanyName;
+            Address = donor.Address;
+            JobTitle = donor.JobTitle;
+            DonorEntity = donor.DonorEntity;
+            TotalDonations = donor.TotalDonations;
+        }
     }
 
     public enum DonorEntity

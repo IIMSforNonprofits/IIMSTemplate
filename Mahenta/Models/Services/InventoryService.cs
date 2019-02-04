@@ -58,7 +58,7 @@ namespace Mahenta.Models
         /// This method deletes a product
         /// </summary>
         /// <param name="id">This is the id of the product to delete</param>
-        /// <returns>A Status Code of 400 for a bad request or a 200 for a successful deletion</returns>
+        /// <returns>A Status Code of 400 for a bad request or 200 for a successful deletion</returns>
         public async Task<HttpStatusCode> DeleteProduct(int id)
         {
             var product = await _context.Products.FirstOrDefaultAsync(p => p.ID == id);
@@ -124,7 +124,7 @@ namespace Mahenta.Models
         /// </summary>
         /// <param name="id">The id of the order to update</param>
         /// <param name="order">The updated version of the order</param>
-        /// <returns>A Status Code of 400 for a bad request or a 200 for a successful update</returns>
+        /// <returns>A Status Code of 400 for a bad request or 200 for a successful update</returns>
         public async Task<HttpStatusCode> UpdateOrder(int id, Order order)
         {
             var updateOrder = await _context.Orders.FirstOrDefaultAsync(o => o.ID == id);
