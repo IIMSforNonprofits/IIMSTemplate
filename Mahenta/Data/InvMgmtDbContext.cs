@@ -16,7 +16,7 @@ namespace Mahenta.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            #region SeedData
+            #region SeedData_Products
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
@@ -73,6 +73,59 @@ namespace Mahenta.Data
                     Sku = "PROD007",
                     Name = "100 Grand",
                     Description = "ha, I wish"
+                });
+            #endregion
+
+            #region SeedData_Donors
+            modelBuilder.Entity<Donor>().HasData(
+                new Donor
+                {
+                    ID = 1,
+                    Email = "email1@gmail.com",
+                    DonorName = "Jon Doe",
+                    PhoneNumber = "1234567890"
+                },
+                new Donor
+                {
+                    ID = 2,
+                    Email = "email1@gmail.com",
+                    DonorName = "Jon Doe",
+                    PhoneNumber = "1234567890"
+                },
+                new Donor
+                {
+                    ID = 3,
+                    Email = "email1@gmail.com",
+                    DonorName = "Jon Doe",
+                    PhoneNumber = "1234567890"
+                },
+                new Donor
+                {
+                    ID = 4,
+                    Email = "email1@gmail.com",
+                    DonorName = "Jon Doe",
+                    PhoneNumber = "1234567890"
+                },
+                new Donor
+                {
+                    ID = 5,
+                    Email = "email1@gmail.com",
+                    DonorName = "Jon Doe",
+                    PhoneNumber = "1234567890"
+                },
+                new Donor
+                {
+                    ID = 6,
+                    Email = "email1@gmail.com",
+                    DonorName = "Jon Doe",
+                    PhoneNumber = "1234567890"
+                },
+                new Donor
+                {
+                    ID = 7,
+                    Email = "email1@gmail.com",
+                    DonorName = "Jon Doe",
+                    PhoneNumber = "1234567890"
                 });
             #endregion
         }
