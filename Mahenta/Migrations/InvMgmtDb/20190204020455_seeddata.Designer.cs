@@ -4,14 +4,16 @@ using Mahenta.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mahenta.Migrations.InvMgmtDb
 {
     [DbContext(typeof(InvMgmtDbContext))]
-    partial class InvMgmtDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190204020455_seeddata")]
+    partial class seeddata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
