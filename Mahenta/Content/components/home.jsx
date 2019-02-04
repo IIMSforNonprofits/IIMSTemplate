@@ -20,6 +20,7 @@ export default class HomeComponent extends Component {
 	render() {
 		const app = (
 			<Fragment>
+				<h1>THIS... IS... MAHENTA...!</h1>
 				<Navbar />
 				<Switch>
 					<Route

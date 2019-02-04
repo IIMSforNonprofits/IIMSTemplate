@@ -1,15 +1,16 @@
 ﻿import React, { Fragment } from 'react';
-import styled from 'react-emotion';
 import { DetailView } from './detail-view.jsx';
-import { Helmet } from 'react-helmet';
-import { renderStylesToNodeStream } from 'emotion-server';
 
 export class Inventory extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             showDetailModal: false,
+            displayData: [],
         };
+        this.setState = this.setState.bind(this);
+        this.fetchData = this.fetchData.bind(this);
+        this.setData = this.setData.bind(this);
     }
 
     showModal = (e) => {
@@ -38,7 +39,34 @@ export class Inventory extends React.Component {
             redirect: "follow",
             referrer: "no-referrer",
             body: JSON.stringify(newInvItem)
-        }).then(response => response.json());
+        }).then(response => response.json())
+        .then(() => this.fetchData());
+    }
+
+    fetchData = () => {
+        fetch("http://localhost:9456/api/inventory", {
+            method: "GET",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            referrer: "no-referrer",
+        })
+        .then(response => response.json())
+        .then(data => {
+            return this.setData(data);
+        })
+    }
+
+    setData = (data) => {
+        this.setState({displayData: data});
+    }
+
+    componentDidMount(){
+        this.fetchData();
     }
 
     // =======================================
@@ -46,10 +74,20 @@ export class Inventory extends React.Component {
     // componentDidMount() - async call to db for paginated inventory list. Proof of life is full list. 
     // =======================================
     render() {
+        // this.fetchData();
         return (
             <div className="Inventory">
                 <h2>I am an Inventory dashboard landing page.</h2>
+                { console.log(this.state.displayData) }
+                { this.state.displayData.map((item, i) => {
+                    return (
+                        <div key={i} className="invList">
+                            <h3>{ item.Sku }</h3>
+                        </div>
+                    )
+                }) }
                 <button onClick={this.showModal}>click me to see stuff</button>
+
                 <DetailView show={this.state.showDetailModal} handleClose={this.hideModal}>
                     <p>Text from inventory modal</p>
                     <form className="newItemForm" onSubmit={this.handleSubmit}>
