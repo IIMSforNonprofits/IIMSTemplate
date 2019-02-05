@@ -44645,7 +44645,7 @@ var Navbar = exports.Navbar = function (_Component) {
 		value: function render() {
 			return React.createElement(
 				'ul',
-				null,
+				{ className: 'navbar' },
 				React.createElement(
 					'li',
 					null,
