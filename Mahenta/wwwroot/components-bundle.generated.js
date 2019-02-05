@@ -44283,11 +44283,14 @@ var Inventory = exports.Inventory = function (_React$Component) {
             var newInvItem = {
                 donorID: event.target.donor_id.value,
                 sku: event.target.sku.value,
-                name: event.target.name.value
-                // event.target.donor_id.value = '';
-                // event.target.sku.value = '';
-                // event.target.name.value = '';
-            };fetch("http://localhost:9456/api/inventory", {
+                name: event.target.name.value,
+                description: event.target.description.value
+            };
+            event.target.donor_id.value = '';
+            event.target.sku.value = '';
+            event.target.name.value = '';
+            event.target.description.value = '';
+            fetch("http://localhost:9456/api/inventory", {
                 method: "POST",
                 mode: "cors",
                 cache: "no-cache",
@@ -44303,10 +44306,7 @@ var Inventory = exports.Inventory = function (_React$Component) {
             }).then(function () {
                 return _this.fetchData();
             }).then(function () {
-                event.target.donor_id.value = '';
-                event.target.sku.value = '';
-                event.target.name.value = '';
-                _this.hideModal();
+                return _this.hideModal();
             });
         };
 
@@ -44433,15 +44433,40 @@ var Inventory = exports.Inventory = function (_React$Component) {
                     _react2.default.createElement(
                         'p',
                         null,
-                        'Text from inventory modal'
+                        'Enter a new inventory product'
                     ),
                     _react2.default.createElement(
                         'form',
                         { className: 'newItemForm', onSubmit: this.handleSubmit },
-                        _react2.default.createElement('input', { type: 'number', name: 'donor_id', required: true }),
-                        _react2.default.createElement('input', { type: 'text', name: 'sku', required: true }),
-                        _react2.default.createElement('input', { type: 'text', name: 'name', required: true }),
-                        _react2.default.createElement('input', { type: 'submit', value: 'Submit new Item' })
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Donor ID:',
+                            _react2.default.createElement('input', { type: 'number', name: 'donor_id', required: true })
+                        ),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'SKU:',
+                            _react2.default.createElement('input', { type: 'text', name: 'sku', required: true })
+                        ),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Name:',
+                            _react2.default.createElement('input', { type: 'text', name: 'name', required: true })
+                        ),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Description:',
+                            _react2.default.createElement('input', { type: 'textarea', name: 'description', required: true })
+                        ),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement('input', { type: 'submit', value: 'Submit New Item' })
                     )
                 )
             )

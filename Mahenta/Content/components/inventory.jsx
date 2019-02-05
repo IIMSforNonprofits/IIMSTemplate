@@ -27,11 +27,13 @@ export class Inventory extends React.Component {
         let newInvItem = { 
             donorID: event.target.donor_id.value, 
             sku: event.target.sku.value, 
-            name: event.target.name.value 
+            name: event.target.name.value,
+            description: event.target.description.value 
         }
         event.target.donor_id.value = '';
         event.target.sku.value = '';
         event.target.name.value = '';
+        event.target.description.value = '';
         fetch("http://localhost:9456/api/inventory", {
             method: "POST",
             mode: "cors",
@@ -104,12 +106,29 @@ export class Inventory extends React.Component {
                 </div>
 
                 <DetailView show={this.state.showDetailModal} handleClose={this.hideModal}>
-                    <p>Text from inventory modal</p>
+                    <p>Enter a new inventory product</p>
                     <form className="newItemForm" onSubmit={this.handleSubmit}>
-                        <input type="number" name="donor_id" required />
-                        <input type="text" name="sku" required />
-                        <input type="text" name="name" required />
-                        <input type="submit" value="Submit new Item" />
+                        <label>
+                            Donor ID:
+                            <input type="number" name="donor_id" required />
+                        </label>
+                        <br></br>
+                        <label>
+                            SKU:
+                            <input type="text" name="sku" required />
+                        </label>
+                        <br></br>
+                        <label>
+                            Name:
+                            <input type="text" name="name"  required />
+                        </label>
+                        <br></br>
+                        <label>
+                            Description:
+                            <input type="textarea" name="description" required />
+                        </label>
+                        <br></br>
+                        <input type="submit" value="Submit New Item" />
                     </form>
                 </DetailView>
             </div>
