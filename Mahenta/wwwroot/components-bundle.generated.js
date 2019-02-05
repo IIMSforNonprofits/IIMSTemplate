@@ -40655,8 +40655,8 @@ var HomeComponent = function (_Component) {
 				null,
 				React.createElement(
 					'h1',
-					null,
-					'THIS... IS... MAHENTA...!'
+					{ className: 'header' },
+					'MAHENTA'
 				),
 				React.createElement(_nav.Navbar, null),
 				React.createElement(
@@ -43253,28 +43253,41 @@ var Dashboard = exports.Dashboard = function (_Component) {
 		key: 'render',
 		value: function render() {
 			return React.createElement(
-				_react.Fragment,
-				null,
+				'div',
+				{ className: 'dashboardMain' },
 				React.createElement(
 					_reactHelmet.Helmet,
 					null,
 					React.createElement(
 						'title',
 						null,
-						'ReactJS.NET Demos'
+						'Mahenta'
 					)
 				),
 				React.createElement(
 					'h1',
-					{
-						style: {
-							lineHeight: '2',
-							color: '#222',
-							fontFamily: 'Helvetica, sans-serif',
-							textShadow: '0 0 5px lightgray'
-						}
-					},
-					'ReactJS.NET is \uD83D\uDD25\uD83D\uDD25'
+					null,
+					'About Mahenta'
+				),
+				React.createElement(
+					'h2',
+					null,
+					'Mission'
+				),
+				React.createElement(
+					'p',
+					null,
+					'To Cceate a scalable and optimal solution for nonprofits who otherwise cannot afford the resources it takes to develop and maintain internal tools. Mahenta is an open source template solution that will provide a basic foundation that is easy to setup, straightforward UX design and abstracted enough to fill the needs of different nonprofits'
+				),
+				React.createElement(
+					'h2',
+					null,
+					'Technologies:'
+				),
+				React.createElement(
+					'p',
+					null,
+					'Mahenta is built on a mixed stack, with a React.js frontend and a Asp.Net Core C# backend. It utilizes SQL and is designed to easily be deployed through Microsoft\u2019s Azure. Additional services include Azure Blob Storage for data such as pictures, audio and other various raw binary data, Azure Key Vaults for secure environment variables and packages such as Identity for user management and Entity Framework Core.'
 				)
 			);
 		}
