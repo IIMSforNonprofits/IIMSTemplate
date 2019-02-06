@@ -127,3 +127,11 @@
     color: lightgray;
     transition: ease-in .2s;
 }
+
+.dashboardMain {
+    margin: 0 10%;
+}
+
+.header {
+    margin: 2% 10%;
+}
