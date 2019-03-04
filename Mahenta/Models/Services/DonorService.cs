@@ -73,9 +73,9 @@ namespace Mahenta.Models
             {
                 return HttpStatusCode.BadRequest;
             }
-            // This method changes all properties (except ID) of updateDonor to be the same as Donor
-            updateDonor.UpdateDonor(donor);
-            _context.Donors.Update(updateDonor);
+            _context.Entry(updateDonor).State = EntityState.Detached;
+            donor.ID = id;
+            _context.Donors.Update(donor);
             await _context.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
